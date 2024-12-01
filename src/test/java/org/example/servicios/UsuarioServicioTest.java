@@ -16,12 +16,13 @@ public class UsuarioServicioTest {
         when(mockRepositorio.buscarporCorreo("prueba@ejemplo.com")).thenReturn(null);
 
         UsuarioServicio usuarioServicio = new UsuarioServicio(mockRepositorio);
-        Usuario nuevoUsuario = usuarioServicio.registrarCliente("Natalia Álvarez","natalia@ejemplo.com", "123", LocalDate.now(), "313333333", "AB0E43");
 
-        assertNotNull(nuevoUsuario);
-        assertEquals("Natalia Álvarez", nuevoUsuario.getNombre());
-        assertEquals("natalia@ejemplo.com", nuevoUsuario.getCorreo());
-        verify(mockRepositorio, times(1)).save(nuevoUsuario);
+        Usuario nuevoCliente = usuarioServicio.registrarCliente("Natalia Álvarez","natalia@ejemplo.com", "123", LocalDate.now(), "313333333", "AB0E43");
+
+        assertNotNull(nuevoCliente);
+        assertEquals("Natalia Álvarez", nuevoCliente.getNombre());
+        assertEquals("natalia@ejemplo.com", nuevoCliente.getCorreo());
+        verify(mockRepositorio, times(1)).guardar(nuevoCliente);
     }
 
     @Test

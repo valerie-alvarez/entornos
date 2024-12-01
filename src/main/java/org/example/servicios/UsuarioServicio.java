@@ -17,9 +17,9 @@ public class UsuarioServicio {
     // Registrar Cliente
     public Cliente registrarCliente(String nombre, String correo, String contrasena, LocalDate fechaNacimiento, String telefono, String numeroPasaporte) {
         validarCorreoUnico(correo);
-
         Cliente nuevoCliente = new Cliente(nombre, correo, contrasena, "Cliente", fechaNacimiento, telefono, numeroPasaporte);
         usuarioRepositorio.guardar(nuevoCliente);
+        return nuevoCliente;
     }
 
     // Registrar Admin
@@ -28,6 +28,7 @@ public class UsuarioServicio {
 
         Admin nuevoAdmin = new Admin(nombre, correo, contrasena, "Admin");
         usuarioRepositorio.guardar(nuevoAdmin);
+        return  nuevoAdmin;
     }
 
     // Metodo común para validar que el correo sea único
@@ -51,7 +52,7 @@ public class UsuarioServicio {
             }
             usuario.setNombre(nuevoNombre);
             usuario.setCorreo(nuevoCorreo);
-            usuarioRepositorio.save(usuario);
+            usuarioRepositorio.guardar(usuario);
             return usuario;
         }
     }
