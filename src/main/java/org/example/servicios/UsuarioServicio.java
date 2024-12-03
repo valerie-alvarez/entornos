@@ -45,13 +45,17 @@ public class UsuarioServicio {
             }
             return usuario;
         }
-        public Usuario actualizarPerfil(String correo, String nuevoNombre, String nuevoCorreo, String nuevoId) {
+        public Usuario actualizarPerfil(String correo, String nuevoNombre, String nuevoCorreo, String nuevoId, String nuevaDireccion, String nuevoTelefono, String nuevoNumeroPasaporte) {
             Usuario usuario = usuarioRepositorio.buscarporCorreo(correo);
             if (usuario == null) {
                 throw new IllegalArgumentException("Usuario no encontrado");
             }
             usuario.setNombre(nuevoNombre);
             usuario.setCorreo(nuevoCorreo);
+            usuario.setDireccion(nuevaDireccion);
+            usuario.setTelefono(nuevoTelefono);
+            usuario.setNumeroPasaporte(nuevoNumeroPasaporte);
+
             usuarioRepositorio.guardar(usuario);
             return usuario;
         }
