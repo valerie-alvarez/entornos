@@ -59,7 +59,7 @@ public class UsuarioServicioTest {
     }
 
     @Test
-    public void iniciarSesion_CredencialesIncorrectas() {
+    public void iniciarSesion_DatosIncorrectos() {
         UsuarioRepositorio mockRepositorio = Mockito.mock(UsuarioRepositorio.class);
 
         when(mockRepositorio.buscarporCorreoyContrasena("natalia@ejemplo.com", "incorrecta")).thenReturn(null);
@@ -69,7 +69,7 @@ public class UsuarioServicioTest {
             usuarioServicio.iniciarSesion("natalia@ejemplo.com", "incorrecta");
         });
 
-        assertEquals("Credenciales incorrectas", exception.getMessage());
+        assertEquals("Datos incorrectos", exception.getMessage());
         verify(mockRepositorio, times(1)).buscarporCorreoyContrasena("natalia@ejemplo.com", "incorrecta");
     }
 }
