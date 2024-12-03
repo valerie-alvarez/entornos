@@ -74,11 +74,11 @@ public class UsuarioServicioTest {
     }
 
     @Test
-    public void actualizarPerfi_Exitoso() {
+    public void actualizarPerfil_Exitoso() {
         UsuarioRepositorio mockRepositorio = Mockito.mock(UsuarioRepositorio.class);
-        Usuario usuarioMock = new Usuario ("Natalia Álvarez", "natalia@ejemplo.com", "123", "Cliente") {};
+        Usuario usuarioMock = new Usuario("Natalia Álvarez", "natalia@ejemplo.com", "123", "Cliente") {};
 
-        when (mockRepositorio.buscarporCorreo("natalia@ejemplo.com")).thenReturn(usuarioMock);
+        when(mockRepositorio.buscarporCorreo("natalia@ejemplo.com")).thenReturn(usuarioMock);
 
         UsuarioServicio usuarioServicio = new UsuarioServicio(mockRepositorio);
 
@@ -99,26 +99,28 @@ public class UsuarioServicioTest {
         assertEquals("XYUE23I3O", usuarioActualizado.getNumeroPasaporte());
 
         verify(mockRepositorio, times(1)).guardar(usuarioMock);
-}
+    }
 
-@Test
-public void actualizarPerfil_UsuarioNoEncontrado(){
-    UsuarioRepositorio mockRepositorio = Mockito.mock(UsuarioRepositorio.class);
+    @Test
+    public void actualizarPerfil_UsuarioNoEncontrado() {
+        UsuarioRepositorio mockRepositorio = Mockito.mock(UsuarioRepositorio.class);
 
-    when(mockRepositorio.buscarporCorreo"natalia@ejemplo.com")).thenReturn(null);
+        when(mockRepositorio.buscarporCorreo("natalia@ejemplo.com")).thenReturn(null);
 
-    UsuarioServicio usuarioServicio = new UsuarioServicio(mockRepositorio);
+        UsuarioServicio usuarioServicio = new UsuarioServicio(mockRepositorio);
 
-    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-        usuarioServicio.actualizarPerfil(
-            "Natalia Álvarez",
-            "alvarez@ejemplo.com",
-            "AB0E44",
-            "Calle De Valerie 234",
-            "3138473920",
-            "XYUE23I3O"
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            usuarioServicio.actualizarPerfil(
+                "Natalia Álvarez",
+                "alvarez@ejemplo.com",
+                "AB0E44",
+                "Calle De Valerie 234",
+                "3138473920",
+                "XYUE23I3O"
             );
-    });
+        });
 
-    assertEquals("Usuario no encontrado", exception.getMessage());
-    verify(mockRepositorio, times(1)).buscarporCorreo("natalia@ejemplo.com");
+        assertEquals("Usuario no encontrado", exception.getMessage());
+        verify(mockRepositorio, times(1)).buscarporCorreo("natalia@ejemplo.com");
+    }
+}
