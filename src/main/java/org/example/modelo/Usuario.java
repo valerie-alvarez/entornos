@@ -7,6 +7,9 @@ public abstract class Usuario {
     private String correo;
     private String contrasena;
     private String tipoUsuario;
+    private String direccion;
+    private String telefono;
+    private String numeroPasaporte;
 
     //Constructor
     public Usuario(String nombre, String correo, String contrasena, String tipoUsuario) {
@@ -48,6 +51,30 @@ public abstract class Usuario {
 
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getNumeroPasaporte() {
+        return numeroPasaporte;
+    }
+
+    public void setNumeroPasaporte(String numeroPasaporte) {
+        this.numeroPasaporte = numeroPasaporte;
     }
 
     //Metodo cambiar contraseña
