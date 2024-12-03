@@ -72,4 +72,53 @@ public class UsuarioServicioTest {
         assertEquals("Datos incorrectos", exception.getMessage());
         verify(mockRepositorio, times(1)).buscarporCorreoyContrasena("natalia@ejemplo.com", "incorrecta");
     }
+
+    @Test
+    public void actualizarPerfi_Exitoso() {
+        UsuarioRepositorio mockRepositorio = Mockito.mock(UsuarioRepositorio.class);
+        Usuario usuarioMock = new Usuario ("Natalia Álvarez", "natalia@ejemplo.com", "123", "Cliente") {};
+
+        when (mockRepositorio.buscarporCorreo("natalia@ejemplo.com")).thenReturn(usuarioMock);
+
+        UsuarioServicio usuarioServicio = new UsuarioServicio(mockRepositorio);
+
+        Usuario usuarioActualizado = usuarioServicio.actualizarPerfil(
+            "alvarez@ejemplo.com",
+            "Natalia Álvarez",
+            "AB0E44",
+            "Calle De Valerie 234",
+            "3138473920",
+            "XYUE23I3O"
+        );
+
+        assertNotNull(usuarioActualizado);
+        assertEquals("Natalia Álvarez", usuarioActualizado.getNombre());
+        assertEquals("alvarez@ejemplo.com", usuarioActualizado.getCorreo());
+        assertEquals("Calle De Valerie 234", usuarioActualizado.getDireccion());
+        assertEquals("3138473920", usuarioActualizado.getTelefono());
+        assertEquals("XYUE23I3O", usuarioActualizado.getNumeroPasaporte());
+
+        verify(mockRepositorio, times(1)).guardar(usuarioMock);
 }
+
+@Test
+public void actualizarPerfil_UsuarioNoEncontrado(){
+    UsuarioRepositorio mockRepositorio = Mockito.mock(UsuarioRepositorio.class);
+
+    when(mockRepositorio.buscarporCorreo"natalia@ejemplo.com")).thenReturn(null);
+
+    UsuarioServicio usuarioServicio = new UsuarioServicio(mockRepositorio);
+
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+        usuarioServicio.actualizarPerfil(
+            "Natalia Álvarez",
+            "alvarez@ejemplo.com",
+            "AB0E44",
+            "Calle De Valerie 234",
+            "3138473920",
+            "XYUE23I3O"
+            );
+    });
+
+    assertEquals("Usuario no encontrado", exception.getMessage());
+    verify(mockRepositorio, times(1)).buscarporCorreo("natalia@ejemplo.com");
