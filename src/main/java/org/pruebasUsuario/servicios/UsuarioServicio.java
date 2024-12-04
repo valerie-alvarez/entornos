@@ -1,25 +1,21 @@
-package org.example.servicios;
-import org.example.modelo.Admin;
-import org.example.modelo.Cliente;
-import org.example.modelo.Usuario;
-import org.example.modelo.repositorio.UsuarioRepositorio;
+package org.pruebasUsuario.servicios;
+import org.pruebasUsuario.modelo.Admin;
+import org.pruebasUsuario.modelo.Cliente;
+import org.pruebasUsuario.modelo.Usuario;
+import org.pruebasUsuario.modelo.repositorio.UsuarioRepositorio;
 import java.time.LocalDate;
 
 public class UsuarioServicio {
-        //Instancia repositorio
-        private final UsuarioRepositorio usuarioRepositorio;
 
-        //Constructor
+        private UsuarioRepositorio usuarioRepositorio;
+
         public UsuarioServicio(UsuarioRepositorio usuarioRepositorio) {
             this.usuarioRepositorio = usuarioRepositorio;
         }
 
-    // Registrar Cliente
-    public Cliente registrarCliente(String nombre, String correo, String contrasena, LocalDate fechaNacimiento, String telefono, String numeroPasaporte) {
-        validarCorreoUnico(correo);
-        Cliente nuevoCliente = new Cliente(nombre, correo, contrasena, "Cliente", fechaNacimiento, telefono, numeroPasaporte);
-        usuarioRepositorio.guardar(nuevoCliente);
-        return nuevoCliente;
+    public Usuario registrarCliente(Cliente cliente){
+        usuarioRepositorio.guardar(cliente);
+        return usuarioRepositorio.buscarporCorreo(cliente.getCorreo());
     }
 
     // Registrar Admin

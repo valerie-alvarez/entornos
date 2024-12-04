@@ -1,10 +1,11 @@
-package org.example.modelo;
+package org.pruebasUsuario.modelo;
 
 public class Admin extends Usuario {
 
     // Constructor
     public Admin(String nombre, String correo, String contrasena, String tipoUsuario) {
-        super(nombre, correo, contrasena, tipoUsuario); // Llama al constructor de Usuario
+        super(nombre, correo, contrasena);
+        this.setTipoUsuario("Admin");// Llama al constructor de Usuario
     }
 
     // Métodos específicos para Admin

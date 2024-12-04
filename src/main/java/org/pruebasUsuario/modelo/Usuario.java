@@ -1,19 +1,19 @@
-package org.example.modelo;
+package org.pruebasUsuario.modelo;
 
 public abstract class Usuario {
 
     //Atributos
-    private String nombre;
-    private String correo;
-    private String contrasena;
-    private String tipoUsuario;
+    protected String nombre;
+    protected String correo;
+    protected String contrasena;
+    protected String tipoUsuario;
 
     //Constructor
-    public Usuario(String nombre, String correo, String contrasena, String tipoUsuario) {
+    public Usuario(String nombre, String correo, String contrasena) {
         this.nombre = nombre;
         this.correo = correo;
         this.contrasena = contrasena;
-        this.tipoUsuario = tipoUsuario;
+        this.tipoUsuario = null;
     }
 
     // Getters y Setters

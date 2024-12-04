@@ -1,4 +1,4 @@
-package org.example.modelo;
+package org.pruebasUsuario.modelo;
 import java.time.LocalDate;
 
 public class Cliente extends Usuario{
@@ -7,11 +7,12 @@ public class Cliente extends Usuario{
     private String numeroPasaporte;
 
     // Constructor
-    public Cliente(String nombre, String correo, String contrasena, String tipoUsuario, LocalDate fechaNacimiento, String telefono, String numeroPasaporte) {
-        super(nombre, correo, contrasena, tipoUsuario); // Llama al constructor de Usuario
+    public Cliente(String nombre, String correo, String contrasena, LocalDate fechaNacimiento, String telefono, String numeroPasaporte) {
+        super(nombre, correo, contrasena); // Llama al constructor de Usuario
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
         this.numeroPasaporte = numeroPasaporte;
+        this.setTipoUsuario("Cliente");
     }
 
     public LocalDate getFechaNacimiento() {
