@@ -1,3 +1,7 @@
+/* Servicio encargado de gestionar las solicitudes, incluyendo la creación, validación 
+y actualización de solicitudes como cotizaciones y visas. Trabaja en conjunto con el repositorio
+para almacenar y buscar solicitudes. */
+
 package org.pruebasSolicitud.servicios;
 
 import org.pruebasSolicitud.modelo.Cotizacion;
