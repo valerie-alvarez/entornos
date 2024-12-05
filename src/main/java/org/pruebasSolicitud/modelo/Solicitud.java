@@ -1,7 +1,10 @@
+/*Clase abstracta que representa una solicitud realizada por un cliente.
+ Contiene atributos comunes a todas las solicitudes. */
+
 package org.pruebasSolicitud.modelo;
 
 public abstract class Solicitud {
-    //Atributos
+
     protected String id;
     protected String clienteId; // Cliente que realiza la solicitud
     protected String estado;
