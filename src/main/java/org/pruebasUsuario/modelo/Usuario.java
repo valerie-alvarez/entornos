@@ -1,14 +1,16 @@
+/*Clase abstracta principal que representa a un usuario del sistema.
+ Los usuarios tienen atributos en común y las subclases como Admin y Cliente 
+ heredan de esta clase. */
+
 package org.pruebasUsuario.modelo;
 
 public abstract class Usuario {
 
-    //Atributos
     protected String nombre;
     protected String correo;
     protected String contrasena;
     protected String tipoUsuario;
 
-    //Constructor
     public Usuario(String nombre, String correo, String contrasena) {
         this.nombre = nombre;
         this.correo = correo;
@@ -16,7 +18,7 @@ public abstract class Usuario {
         this.tipoUsuario = null;
     }
 
-    // Getters y Setters
+    //Getters y Setters
     public String getNombre() {
         return nombre;
     }
