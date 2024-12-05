@@ -1,3 +1,6 @@
+/*Representa una solicitud para obtener una visa.
+ Extiende la clase principal solicitud e incluye información adicional. */
+
 package org.pruebasSolicitud.modelo;
 
 public class Visa extends Solicitud {
