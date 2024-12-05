@@ -1,3 +1,6 @@
+/*Repositorio para la gestión de solicitudes.
+Proporciona métodos para almacenar y buscar solicitudes en el sistema. */
+
 package org.pruebasSolicitud.modelo.repositorio;
 import org.pruebasSolicitud.modelo.Solicitud;
 
