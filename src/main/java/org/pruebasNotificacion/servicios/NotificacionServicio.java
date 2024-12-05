@@ -1,3 +1,7 @@
+/*Servicio para la gestión de notificaciones relacionadas con pasaportes y solicitudes.
+Contiene métodos para enviar notificaciones por correo electrónico, como el 
+vencimiento de un pasaporte o el cambio de estado de una solicitud. */
+
 package org.pruebasNotificacion.servicios;
 
 import org.pruebasNotificacion.modelo.NotificacionAPI;
