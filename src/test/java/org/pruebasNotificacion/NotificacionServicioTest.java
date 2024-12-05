@@ -1,3 +1,4 @@
+//Hoja de pruebas para Notificacion, dos pruebas en total.
 package org.pruebasNotificacion;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
