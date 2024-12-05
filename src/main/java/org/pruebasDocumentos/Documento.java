@@ -1,3 +1,7 @@
+/* Clase que permite almacenar información básica de un documento y 
+proporciona métodos para acceder y modificar sus atributos.
+Utilizar los métodos getter y setter para trabajar con sus atributos*/
+
 package org.pruebasDocumentos;
 
 public class Documento {
