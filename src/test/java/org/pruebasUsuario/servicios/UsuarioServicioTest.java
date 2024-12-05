@@ -1,3 +1,4 @@
+//Hoja de pruebas de Usuario, cinco pruebas en total.
 package org.pruebasUsuario.servicios;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
@@ -18,7 +19,8 @@ import static org.mockito.Mockito.*;
 public class UsuarioServicioTest {
 
 
-
+/*Pruebas unitarias realizadas para los requerimientos
+funcionales número uno, dos y tres. */
     @Test
     public void registro_Exitoso(){
         UsuarioRepositorio usuarioRepositorio = Mockito.mock(UsuarioRepositorio.class);
