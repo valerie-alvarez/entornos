@@ -15,13 +15,15 @@ public class SolicitudServicio {
     public SolicitudServicio(SolicitudRepositorio solicitudRepositorio) {
         this.solicitudRepositorio = solicitudRepositorio;
     }
+
     // Crear una solicitud de cotización
-    public Cotizacion crearCotizacion(Cotizacion cotizacion){;
+    public Cotizacion crearCotizacion(Cotizacion cotizacion) {
+        ;
         solicitudRepositorio.guardar(cotizacion);
         return solicitudRepositorio.buscarporId(cotizacion.getId());
     }
 
-    public Visa crearVisa(Visa visa){
+    public Visa crearVisa(Visa visa) {
         validarVisa(visa);
         solicitudRepositorio.guardar(visa);
         return solicitudRepositorio.buscarporId(visa.getId());
@@ -33,7 +35,15 @@ public class SolicitudServicio {
         }
     }
 
-    public String verificarEstadoSolicitud(Solicitud solicitud){
+    public String verificarEstadoSolicitud(Solicitud solicitud) {
         return solicitudRepositorio.buscarporId(solicitud.getId()).getEstado();
+    }
+
+    public void actualizarEstado(String id, String nuevoEstado) {
+        Cotizacion cotizacion = solicitudRepositorio.buscarporId(id);
+        if (cotizacion != null) {
+            cotizacion.setEstado(nuevoEstado);
+        }
+        else{throw new IllegalArgumentException("Solicitud no encontrada");}
     }
 }

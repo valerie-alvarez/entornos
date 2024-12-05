@@ -70,4 +70,5 @@ public class SolicitudServicioTest {
 
         assertEquals(estadoEsperado, estado);
     }
+
 }
