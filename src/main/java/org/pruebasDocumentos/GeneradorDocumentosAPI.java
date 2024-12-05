@@ -1,3 +1,5 @@
+//API para la generación de documentos.
+
 package org.pruebasDocumentos;
 
 import javax.print.Doc;
