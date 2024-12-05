@@ -19,6 +19,7 @@ import static org.mockito.Mockito.when;
 
 public class NotificacionServicioTest {
 
+//Pruebas unitarias para el requerimiento funcional número 15.
     @Test
     public void notificarVencimientoPasaporte() {
         NotificacionAPI notificacionAPI = Mockito.mock(NotificacionAPI.class);
