@@ -1,3 +1,6 @@
+/*Representa una cotización solicitada por un cliente. 
+Extiende la clase base Solicitud e incluye información adicional. */
+
 package org.pruebasSolicitud.modelo;
 
 import java.time.LocalDate;
