@@ -5,8 +5,8 @@ public class Visa extends Solicitud {
     private String numeroPasaporte;
     private String nacionalidad;
 
-    public Visa(String tipoVisa, String numeroPasaporte, String nacionalidad) {
-        super(clienteId); // Estado inicial es "Pendiente"
+    public Visa(String clienteId, String tipoVisa, String numeroPasaporte, String nacionalidad) {
+        super(clienteId);
         this.tipoVisa = tipoVisa;
         this.numeroPasaporte = numeroPasaporte;
         this.nacionalidad = nacionalidad;

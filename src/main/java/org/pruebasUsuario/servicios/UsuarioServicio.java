@@ -14,11 +14,11 @@ public class UsuarioServicio {
         }
 
     public Usuario registrarCliente(Cliente cliente){
-        usuarioRepositorio.guardar(cliente);
-        return usuarioRepositorio.buscarporCorreo(cliente.getCorreo());
+            validarCorreoUnico(cliente.getCorreo());
+            usuarioRepositorio.guardar(cliente);
+            return usuarioRepositorio.buscarporCorreo(cliente.getCorreo());
     }
 
-    // Registrar Admin
     public Admin registrarAdmin(String nombre, String correo, String contrasena) {
         validarCorreoUnico(correo);
 
@@ -27,7 +27,6 @@ public class UsuarioServicio {
         return  nuevoAdmin;
     }
 
-    // Metodo común para validar que el correo sea único
     private void validarCorreoUnico(String correo) {
         if (usuarioRepositorio.buscarporCorreo(correo) != null) {
             throw new IllegalArgumentException("El correo ya está registrado");
@@ -41,19 +40,19 @@ public class UsuarioServicio {
             }
             return usuario;
         }
-        public Usuario actualizarPerfil(String correo, String nuevoNombre, String nuevoCorreo, String nuevoId, String nuevaDireccion, String nuevoTelefono, String nuevoNumeroPasaporte) {
-            Usuario usuario = usuarioRepositorio.buscarporCorreo(correo);
-            if (usuario == null) {
+
+    public Cliente actualizarPerfil(String correo, String nuevoNombre, String nuevoPasaporte) {
+            Cliente cliente = usuarioRepositorio.buscarporCorreo(correo);
+            if (cliente == null) {
                 throw new IllegalArgumentException("Usuario no encontrado");
             }
-            usuario.setNombre(nuevoNombre);
-            usuario.setCorreo(nuevoCorreo);
-            usuario.setDireccion(nuevaDireccion);
-            usuario.setTelefono(nuevoTelefono);
-            usuario.setNumeroPasaporte(nuevoNumeroPasaporte);
+            cliente.setNombre(nuevoNombre);
+            cliente.setNumeroPasaporte(nuevoPasaporte);
 
-            usuarioRepositorio.guardar(usuario);
-            return usuario;
+            usuarioRepositorio.guardar(cliente);
+            return cliente;
+
+
         }
     }
 

@@ -38,4 +38,6 @@ public class Cliente extends Usuario{
     public void setNumeroPasaporte(String numeroPasaporte) {
         this.numeroPasaporte = numeroPasaporte;
     }
+
+
 }

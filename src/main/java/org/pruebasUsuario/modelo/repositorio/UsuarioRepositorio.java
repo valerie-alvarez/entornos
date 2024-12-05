@@ -6,7 +6,7 @@ import org.pruebasUsuario.modelo.Usuario;
 public class UsuarioRepositorio {
 
     public void guardar(Usuario usuario){return;}
-    public Usuario buscarporCorreo(String correo) {return null;}
-    public Usuario buscarporCorreoyContrasena(String correo, String contrasena){return null;}
+    public <T extends Usuario> T buscarporCorreo(String correo) {return null;}
+    public <T extends Usuario> T buscarporCorreoyContrasena(String correo, String contrasena){return null;}
 
 }

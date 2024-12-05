@@ -50,7 +50,6 @@ public abstract class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
-    //Metodo cambiar contraseña
     public void cambiarContrasena(String contrasenaActual, String nuevaContrasena) {
         if (!this.contrasena.equals(contrasenaActual)) {
             throw new IllegalArgumentException("La contraseña actual es incorrecta.");

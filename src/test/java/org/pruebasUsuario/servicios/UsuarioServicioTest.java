@@ -46,17 +46,79 @@ public class UsuarioServicioTest {
 
     @Test
     public void correoDuplicado(){
-        UsuarioRepositorio mockRepositorio = Mockito.mock(UsuarioRepositorio.class);
-        when(mockRepositorio.buscarporCorreo("natalia@ejemplo.com"))
-                .thenReturn(new Cliente(
-                        "Natalia Álvarez",
+        UsuarioRepositorio usuarioRepositorio = Mockito.mock(UsuarioRepositorio.class);
+        Cliente clienteEntrada =
+                new Cliente("Natalia Álvarez",
                         "natalia@ejemplo.com",
-                        "password123",
-                        LocalDate.of(2001, 5, 20),
-                        "333123456",
-                        "A12345678"));
+                        "123",
+                        LocalDate.now(),
+                        "313333333",
+                        "AB0E43");
 
+        when(usuarioRepositorio.buscarporCorreo("natalia@ejemplo.com"))
+                .thenReturn(clienteEntrada);
 
+        UsuarioServicio usuarioServicio = new UsuarioServicio(usuarioRepositorio);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            usuarioServicio.registrarCliente(
+                    clienteEntrada
+            );
+        });
+        assertEquals("El correo ya está registrado", exception.getMessage());
+    }
+
+    @Test
+    public void inicioSesionExitoso(){
+        String correoEntrada = "natalia@ejemplo.com";
+        String contrasenaEntrada = "123";
+
+        UsuarioRepositorio usuarioRepositorio = Mockito.mock(UsuarioRepositorio.class);
+        when(usuarioRepositorio.buscarporCorreoyContrasena(correoEntrada, contrasenaEntrada))
+                .thenReturn(new Cliente("Natalia Álvarez", "natalia@ejemplo.com",
+                        "123", LocalDate.of(1990, 5, 20),
+                        "555123456", "A12345678"));
+
+        UsuarioServicio usuarioServicio = new UsuarioServicio(usuarioRepositorio);
+
+        Usuario usuario = usuarioServicio.iniciarSesion(correoEntrada, contrasenaEntrada);
+
+        assertNotNull(usuario);
+        assertEquals(correoEntrada, usuario.getCorreo());
+        assertEquals(contrasenaEntrada, usuario.getContrasena());
+    }
+
+    @Test
+    public void actualizarPerfil() {
+        UsuarioRepositorio usuarioRepositorio = Mockito.mock(UsuarioRepositorio.class);
+        Cliente cliente = new Cliente("Natalia Álvarez",
+                "natalia@ejemplo.com",
+                "123",
+                LocalDate.now(),
+                "313333333",
+                "AB0E43");
+
+        //Cliente con nombre y pasaporte actualizados
+        Cliente clienteEsperado = new Cliente("Valerie Osorio",
+                "natalia@ejemplo.com",
+                "123",
+                LocalDate.now(),
+                "313333333",
+                "FM1D29");
+
+        when(usuarioRepositorio.buscarporCorreo("natalia@ejemplo.com")).thenReturn(cliente);
+
+        UsuarioServicio usuarioServicio = new UsuarioServicio(usuarioRepositorio);
+
+        Cliente clienteActualizado = usuarioServicio.actualizarPerfil(
+                "natalia@ejemplo.com",
+                "Valerie Osorio",
+                "FM1D29");
+
+        assertEquals(clienteEsperado.getNombre(), clienteActualizado.getNombre());
+        assertEquals(clienteEsperado.getNumeroPasaporte(), clienteActualizado.getNumeroPasaporte());
+
+        verify(usuarioRepositorio, times(1)).guardar(clienteActualizado);
     }
 }
 
