@@ -7,17 +7,17 @@ import org.pruebasUsuario.servicios.UsuarioServicio;
 
 import java.time.LocalDate;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
 
+//Crear un cliente.
         Cliente cliente1 =
                 new Cliente("Natalia Álvarez",
                 "natalia@ejemplo.com",
                 "123", LocalDate.now(),
                 "313333333",
                 "AB0E43");
+//Crear un servicio de usuario.
         UsuarioServicio usuarioServicio = new UsuarioServicio(new UsuarioRepositorio());
         }
     }
