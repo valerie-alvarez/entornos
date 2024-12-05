@@ -1,3 +1,5 @@
+//Hoja de pruebas de Solicitudes, tres pruebas en total.
+
 package org.pruebasSolicitud.servicios;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -10,10 +12,12 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-//Hoja de prueba de Solicitudes 4 pruebas en total
+
 public class SolicitudServicioTest {
 
-    @Test //RF 04
+/*Pruebas unitarias realizadas para los requerimientos
+funcionales número cuatro y cinco.*/
+    @Test
     public void cotizacionExitosa(){
         SolicitudRepositorio solicitudRepositorio = Mockito.mock(SolicitudRepositorio.class);
 
@@ -34,7 +38,7 @@ public class SolicitudServicioTest {
 
     }
 
-    @Test //RF 05
+    @Test 
     public void visa_datosIncompletos(){
         SolicitudRepositorio solicitudRepositorio = Mockito.mock(SolicitudRepositorio.class);
         SolicitudServicio solicitudServicio = new SolicitudServicio(solicitudRepositorio);
