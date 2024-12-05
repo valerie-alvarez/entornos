@@ -1,6 +1,6 @@
 /* Clase que permite almacenar información de un pasaporte y 
 proporciona métodos para acceder y modificar sus atributos.
-Utilizar los métodos getter y setter para trabajar con sus atributos*/
+Utiliza los métodos getter y setter para trabajar con sus atributos*/
 
 package org.pruebasNotificacion.modelo;
 
