@@ -1,3 +1,6 @@
+/*Repositorio encargado de gestionar usuarios en la base de datos, como guardar 
+un nuevo usuario y realizar búsquedas por correo electrónico y contraseña. */
+
 package org.pruebasUsuario.modelo.repositorio;
 import org.pruebasUsuario.modelo.Cliente;
 import org.pruebasUsuario.modelo.Usuario;
