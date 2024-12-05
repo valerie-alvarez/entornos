@@ -1,3 +1,5 @@
+//API para el envío de notificaciones.
+
 package org.pruebasNotificacion.modelo;
 
 public class NotificacionAPI {
