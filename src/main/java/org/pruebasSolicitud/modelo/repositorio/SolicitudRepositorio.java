@@ -4,20 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SolicitudRepositorio {
-    private final Map<String, Solicitud> solicitudes = new HashMap<>();
 
     public void guardar(Solicitud solicitud) {
-        solicitudes.put(solicitud.getClienteId(), solicitud);
+        return;
     }
 
-    public Solicitud buscarPorId(String id) {
-        return solicitudes.get(id);
+    public <T extends Solicitud> T buscarporId(String id) {
+        return null;
     }
 
-    public void actualizarEstado(String id, String nuevoEstado) {
-        Solicitud solicitud = solicitudes.get(id);
-        if (solicitud != null) {
-            solicitud.setEstado(nuevoEstado);
-        }
     }
-}
+

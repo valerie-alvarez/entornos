@@ -42,18 +42,18 @@ public class UsuarioServicio {
         }
 
     public Cliente actualizarPerfil(String correo, String nuevoNombre, String nuevoPasaporte) {
-            Cliente cliente = usuarioRepositorio.buscarporCorreo(correo);
-            if (cliente == null) {
-                throw new IllegalArgumentException("Usuario no encontrado");
-            }
-            cliente.setNombre(nuevoNombre);
-            cliente.setNumeroPasaporte(nuevoPasaporte);
-
-            usuarioRepositorio.guardar(cliente);
-            return cliente;
-
-
+        Cliente cliente = usuarioRepositorio.buscarporCorreo(correo);
+        if (cliente == null) {
+            throw new IllegalArgumentException("Usuario no encontrado");
         }
+        cliente.setNombre(nuevoNombre);
+        cliente.setNumeroPasaporte(nuevoPasaporte);
+
+        usuarioRepositorio.guardar(cliente);
+        return cliente;
+
+
+    }
     }
 
 

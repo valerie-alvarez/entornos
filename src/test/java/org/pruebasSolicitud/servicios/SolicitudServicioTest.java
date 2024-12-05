@@ -1,8 +1,9 @@
 package org.pruebasSolicitud.servicios;
 import org.junit.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.pruebasSolicitud.modelo.Cotizacion;
+import org.pruebasSolicitud.modelo.Visa;
+import org.pruebasSolicitud.modelo.Solicitud;
 import org.pruebasSolicitud.modelo.repositorio.SolicitudRepositorio;
 
 import java.time.LocalDate;
@@ -14,28 +15,59 @@ public class SolicitudServicioTest {
 
     @Test
     public void cotizacionExitosa(){
-        SolicitudRepositorio mockRepositorio = Mockito.mock(SolicitudRepositorio.class);
+        SolicitudRepositorio solicitudRepositorio = Mockito.mock(SolicitudRepositorio.class);
 
-        SolicitudServicio solicitudServicio = new SolicitudServicio(mockRepositorio);
+        Cotizacion cotizacionEntrada = new Cotizacion(
+                "1", "natalia@ejemplo.com", "Lima", LocalDate.of(2024, 6, 15), LocalDate.of(2024, 6, 30), 3000000.0);
 
-        Cotizacion nuevaCotizacion = solicitudServicio.crearCotizacion(
-                "natalia@ejemplo.com",
-                "Lima",
-                LocalDate.of(2024, 6, 15),
-                LocalDate.of(2024, 6, 30),
-                3000000.0
-        );
+        Cotizacion cotizacionEsperada = new Cotizacion(
+                "1", "natalia@ejemplo.com", "Lima", LocalDate.of(2024, 6, 15), LocalDate.of(2024, 6, 30), 3000000.0);
 
-        assertNotNull(nuevaCotizacion);
-        assertEquals("Lima", nuevaCotizacion.getDestino());
-        assertEquals(3000000.0, nuevaCotizacion.getPresupuesto());
-        assertEquals("natalia@ejemplo.com", nuevaCotizacion.getClienteId());
+        SolicitudServicio solicitudServicio = new SolicitudServicio(solicitudRepositorio);
 
-        verify(mockRepositorio, times(1)).guardar(nuevaCotizacion);
+        Mockito.when(solicitudRepositorio.buscarporId(cotizacionEntrada.getId()))
+                .thenReturn(cotizacionEsperada);
+
+        Cotizacion cotizacionResultado = solicitudServicio.crearCotizacion(cotizacionEntrada);
+
+        assertEquals(cotizacionResultado, cotizacionEsperada);
+
     }
 
     @Test
-    public void cotizacion_datosIncompletos(){
+    public void visa_datosIncompletos(){
+        SolicitudRepositorio solicitudRepositorio = Mockito.mock(SolicitudRepositorio.class);
+        SolicitudServicio solicitudServicio = new SolicitudServicio(solicitudRepositorio);
 
+        Visa visaEntrada = new Visa( "1",
+                "natalia@example.com",
+                null,
+                "A12345678",
+                "Colombia");
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            solicitudServicio.crearVisa(visaEntrada);
+        });
+
+        assertEquals("Debe seleccionar un tipo de visa.", exception.getMessage());
+    }
+
+    @Test
+    public void verificarEstadoSolicitud() {
+
+        SolicitudRepositorio solicitudRepositorio = Mockito.mock(SolicitudRepositorio.class);
+        Solicitud solicitud = new Cotizacion(
+                "1", "natalia@ejemplo.com", "Lima", LocalDate.of(2024, 6, 15), LocalDate.of(2024, 6, 30), 3000000.0);
+        when(solicitudRepositorio.buscarporId("1")).thenReturn(solicitud);
+
+        String estadoEsperado = "Pendiente";
+
+
+        SolicitudServicio solicitudServicio = new SolicitudServicio(solicitudRepositorio);
+
+
+        String estado = solicitudServicio.verificarEstadoSolicitud(solicitud);
+
+        assertEquals(estadoEsperado, estado);
     }
 }

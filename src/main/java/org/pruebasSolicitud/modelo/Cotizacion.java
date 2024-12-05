@@ -8,8 +8,8 @@ public class Cotizacion extends Solicitud {
     private LocalDate fechaFin;
     private double presupuesto;
 
-    public Cotizacion(String clienteId, String destino, LocalDate fechaInicio, LocalDate fechaFin, double presupuesto) {
-        super(clienteId); // Estado inicial es "Pendiente"
+    public Cotizacion(String id, String clienteId, String destino, LocalDate fechaInicio, LocalDate fechaFin, double presupuesto) {
+        super(id, clienteId);
         this.destino = destino;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;

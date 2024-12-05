@@ -5,8 +5,8 @@ public class Visa extends Solicitud {
     private String numeroPasaporte;
     private String nacionalidad;
 
-    public Visa(String clienteId, String tipoVisa, String numeroPasaporte, String nacionalidad) {
-        super(clienteId);
+    public Visa(String id, String clienteId, String tipoVisa, String numeroPasaporte, String nacionalidad) {
+        super(id, clienteId);
         this.tipoVisa = tipoVisa;
         this.numeroPasaporte = numeroPasaporte;
         this.nacionalidad = nacionalidad;
