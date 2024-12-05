@@ -10,10 +10,10 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
+//Hoja de prueba de Solicitudes 4 pruebas en total
 public class SolicitudServicioTest {
 
-    @Test
+    @Test //RF 04
     public void cotizacionExitosa(){
         SolicitudRepositorio solicitudRepositorio = Mockito.mock(SolicitudRepositorio.class);
 
@@ -34,7 +34,7 @@ public class SolicitudServicioTest {
 
     }
 
-    @Test
+    @Test //RF 05
     public void visa_datosIncompletos(){
         SolicitudRepositorio solicitudRepositorio = Mockito.mock(SolicitudRepositorio.class);
         SolicitudServicio solicitudServicio = new SolicitudServicio(solicitudRepositorio);

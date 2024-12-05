@@ -2,6 +2,7 @@ package org.pruebasNotificacion.servicios;
 
 import org.pruebasNotificacion.modelo.NotificacionAPI;
 import org.pruebasNotificacion.modelo.Pasaporte;
+import org.pruebasSolicitud.modelo.Solicitud;
 
 import java.time.LocalDate;
 
@@ -23,9 +24,17 @@ public class NotificacionServicio {
         else return false;
     }
 
-    /**simula envío de notificaciones
-    private void enviarNotificacion(String clienteId, String mensaje) {
-        //simula envío de una notificación
-        System.out.println("Notificación enviada a " + clienteId + ": " + mensaje);
-    }*/
+    public <T extends Solicitud> T cambiarEstado(Solicitud solicitud, String nuevoEstado) {
+        solicitud.setEstado(nuevoEstado);
+        notificarCambioEstado(solicitud);
+        return (T) solicitud;
+    }
+
+    public boolean notificarCambioEstado(Solicitud solicitud) {
+        String correoCliente = solicitud.getClienteId();
+        String asunto = "Estado actualizado de tu solicitud";
+        String mensaje = "El estado de tu solicitud ha cambiado. Por favor, revisa el portal para más detalles.";
+
+        return notificacionAPI.enviarCorreo(correoCliente, asunto, mensaje);
+    }
 }

@@ -1,7 +1,7 @@
 package org.pruebasSolicitud.modelo.repositorio;
 import org.pruebasSolicitud.modelo.Solicitud;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.List;
 
 public class SolicitudRepositorio {
 
@@ -13,5 +13,5 @@ public class SolicitudRepositorio {
         return null;
     }
 
-    }
+}
 

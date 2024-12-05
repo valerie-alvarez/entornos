@@ -2,6 +2,7 @@ package org.pruebasUsuario.servicios;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.pruebasUsuario.modelo.Admin;
 import org.pruebasUsuario.modelo.Cliente;
 import org.pruebasUsuario.modelo.Usuario;
 import org.pruebasUsuario.modelo.repositorio.UsuarioRepositorio;
@@ -27,21 +28,33 @@ public class UsuarioServicioTest {
                         "123", LocalDate.now(),
                         "313333333",
                         "AB0E43");
-        Cliente clienteEsperado =
-                new Cliente("Natalia Álvarez",
-                        "natalia@ejemplo.com",
-                        "123", LocalDate.now(),
-                        "313333333",
-                        "AB0E43");
+        Mockito.when(usuarioRepositorio.buscarporCorreo(clienteEntrada.getCorreo()))
+                .thenReturn(null).thenReturn(clienteEntrada);;
 
         UsuarioServicio usuarioServicio = new UsuarioServicio(usuarioRepositorio);
 
-        Mockito.when(usuarioRepositorio.buscarporCorreo(clienteEntrada.getCorreo()))
-                .thenReturn(clienteEsperado);
+        Usuario clienteResultado = usuarioServicio.registrarCliente(clienteEntrada);
 
-         Usuario clienteResultado = usuarioServicio.registrarCliente(clienteEntrada);
+        assertEquals(clienteResultado, clienteEntrada);
+    }
 
-        assertEquals(clienteResultado, clienteEsperado);
+    @Test
+    public void registroAdmin_Exitoso(){
+        UsuarioRepositorio usuarioRepositorio = Mockito.mock(UsuarioRepositorio.class);
+        Admin adminEntrada =
+                new Admin("Valerie Álvarez",
+                        "valerie@ejemplo.com",
+                        "123"
+                );
+
+        UsuarioServicio usuarioServicio = new UsuarioServicio(usuarioRepositorio);
+
+        Mockito.when(usuarioRepositorio.buscarporCorreo(adminEntrada.getCorreo()))
+                .thenReturn(null).thenReturn(adminEntrada);;
+
+        Usuario adminResultado = usuarioServicio.registrarAdmin(adminEntrada);
+
+        assertEquals(adminResultado, adminEntrada);
     }
 
     @Test

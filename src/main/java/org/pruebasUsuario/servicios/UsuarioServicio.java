@@ -19,12 +19,10 @@ public class UsuarioServicio {
             return usuarioRepositorio.buscarporCorreo(cliente.getCorreo());
     }
 
-    public Admin registrarAdmin(String nombre, String correo, String contrasena) {
-        validarCorreoUnico(correo);
-
-        Admin nuevoAdmin = new Admin(nombre, correo, contrasena, "Admin");
-        usuarioRepositorio.guardar(nuevoAdmin);
-        return  nuevoAdmin;
+    public Admin registrarAdmin(Admin admin) {
+        validarCorreoUnico(admin.getCorreo());
+        usuarioRepositorio.guardar(admin);
+        return usuarioRepositorio.buscarporCorreo(admin.getCorreo());
     }
 
     private void validarCorreoUnico(String correo) {
