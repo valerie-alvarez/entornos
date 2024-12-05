@@ -1,3 +1,5 @@
+//Representa un repositorio para manejar operaciones relacionadas con los documentos
+
 package org.pruebasDocumentos;
 
 import javax.print.Doc;
